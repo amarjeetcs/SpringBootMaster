@@ -1,5 +1,7 @@
 package com.springboot.master.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -17,22 +19,24 @@ public class Validation {
     private int id;
 
     @NotNull(message = "User name should not be null")
-    @NotBlank
+    @NotBlank(message = "User name should not be blank")
     private String name;
 
+  
     @NotNull(message = "Invalid gender")
-    @NotBlank
+    @NotBlank(message = "Gender should not be blank")
     private String gender;
 
+    
     @Min(value = 18, message = "Age must be at least 18")
     @Max(value = 60, message = "Age must not exceed 60")
     private int age;
 
     @NotNull(message = "Invalid city name")
-    @NotBlank
+    @NotBlank(message = "City name should not be blank")
     private String city;
     
-    @NotBlank
+    @NotBlank(message = "Email should not be blank")
     @Email(message = "Invalid email address")
     private String email;
 
@@ -41,13 +45,15 @@ public class Validation {
     private String number;
 
     @NotNull(message = "Company should not be null")
-    @NotBlank
+    @NotBlank(message = "Company should not be blank")
     private String company;
 
-   
+    
+    @NotNull(message = "Country should not be null")
+    @Min(value = 0, message = "Salary must be a positive value")
     private long salary;
 
     @NotBlank(message = "Country should not be blank")
-    @NotNull
+    @NotNull(message = "Country should not be null")
     private String country;
 }

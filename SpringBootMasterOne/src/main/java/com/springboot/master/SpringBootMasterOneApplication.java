@@ -18,10 +18,6 @@ public class SpringBootMasterOneApplication extends SpringBootServletInitializer
 		SpringApplication.run(SpringBootMasterOneApplication.class, args);
 	}
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(SpringBootMasterOneApplication.class);
-
-	}
+	
 
 }
