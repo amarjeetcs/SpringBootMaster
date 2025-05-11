@@ -1,0 +1,125 @@
+Java 11 Features:
+----------------
+✅ String.isBlank() (Java 11)
+Description: Returns true if the string is empty or contains only whitespace characters (spaces, tabs, etc.).
+Example:
+String str1 = "";
+String str2 = "    ";
+String str3 = "Hello";
+
+System.out.println(str1.isBlank()); // true
+System.out.println(str2.isBlank()); // true
+System.out.println(str3.isBlank()); // false
+
+✅ String.strip() (Java 11)
+Description: Removes leading and trailing whitespace from a string. Unlike trim(), it handles all Unicode whitespace characters.
+Example:
+String str = "  Hello World  ";
+System.out.println(str.strip()); // "Hello World"
+
+✅ String.stripLeading() and String.stripTrailing() (Java 11)
+Description: These methods remove only leading or trailing whitespace, respectively.
+Example:
+String str = "  Hello World  ";
+System.out.println(str.stripLeading()); // "Hello World  "
+System.out.println(str.stripTrailing()); // "  Hello World"
+
+✅ String.repeat(int) (Java 11)
+Description: Repeats the string a specified number of times and returns the resulting string.
+Example:
+String str = "Hi ";
+System.out.println(str.repeat(3)); // "Hi Hi Hi "
+
+✅ String.lines() (Java 11)
+Description: Converts a multiline string into a stream of lines. Each line is separated by a line break.
+Example:
+String multilineStr = "Hello\nWorld\nJava";
+multilineStr.lines().forEach(System.out::println);
+Output:
+Hello
+World
+Java
+
+✅ var in Local Variable Declarations (Java 11)
+Description: var can be used to declare local variables with inferred type, and in Java 11, it can also be used in lambda parameters and enhanced for loops.
+Example:
+var message = "Hello, Java 11!";
+System.out.println(message);
+
+✅ Files.writeString() and Files.readString() (Java 11)
+Description: Simplified methods for reading and writing files as strings.
+Example:
+Path path = Paths.get("file.txt");
+
+// Write string to file
+Files.writeString(path, "Hello, World!");
+
+// Read string from file
+String content = Files.readString(path);
+System.out.println(content); // "Hello, World!"
+
+✅ Optional.isEmpty() (Java 11)
+Description: A new method that checks if the Optional is empty (i.e., contains no value).
+Example:
+Optional<String> opt = Optional.empty();
+System.out.println(opt.isEmpty()); // true
+
+✅ HttpClient API (Java 11)
+In Java 11, the HttpClient API was standardized and introduced as part of the java.net.http package. This new HTTP client replaces the older HttpURLConnection and provides a much more modern, asynchronous, and flexible way of making HTTP requests.
+
+✅ Major Changes in Java 11 HttpClient API:
+1. Standardization
+Introduced in Java 9 as an incubator module (jdk.incubator.http).
+
+Fully standardized in Java 11 as java.net.http.HttpClient.
+
+2. Support for HTTP/1.1 and HTTP/2
+New HttpClient supports both HTTP/1.1 and HTTP/2 protocols.
+
+Automatically negotiates the best protocol with the server.
+
+3. Asynchronous and Synchronous Calls
+Provides both synchronous (blocking) and asynchronous (non-blocking) API support.
+
+
+Description: Standardized HttpClient API for simpler HTTP requests.
+Example:
+HttpClient client = HttpClient.newHttpClient();
+HttpRequest request = HttpRequest.newBuilder()
+    .uri(URI.create("https://api.github.com"))
+    .build();
+HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+System.out.println(response.body());
+
+✅ var for Lambda Parameters (Java 11)
+Description: var can now be used in lambda expressions.
+Example:
+var list = List.of(1, 2, 3, 4, 5);
+list.forEach((var n) -> System.out.println(n));
+
+✅ JEP 330: Launch Single-File Source-Code Programs (Java 11)
+Description: Run Java source code directly without compiling.
+Example:
+java HelloWorld.java
+
+✅ Collectors.toArray(IntFunction<A[]> generator) (Java 11)
+Description: Allows specifying array type more precisely when converting streams.
+Example:
+List<String> list = Arrays.asList("a", "b", "c");
+String[] array = list.stream().toArray(String[]::new);
+System.out.println(Arrays.toString(array)); // [a, b, c]
+
+✅ Epsilon Garbage Collector (Java 11)
+Description: A no-op GC for benchmarking and testing.
+Example:
+java -XX:+UseEpsilonGC MyApplication
+
+✅ ZGC (Z Garbage Collector) (Java 11)
+Description: Low-latency GC for large heaps and minimal pauses.
+Example:
+java -XX:+UseZGC MyApplication
+
+✅ JEP 318: Epsilon Garbage Collector (Java 11)
+Description: Experimental GC for short-lived apps.
+Example:
+java -XX:+UseEpsilonGC -jar yourapp.jar
